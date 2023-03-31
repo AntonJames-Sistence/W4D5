@@ -54,3 +54,26 @@ def stock_picker(days)
 
     days_idx
 end
+
+class TowerHanoi
+    attr_accessor :towers
+
+    def initialize
+        @towers = [[4,3,2,1],[],[]]
+    end
+
+    def move(start_tower, end_tower)
+        if !@towers[end_tower-1].empty?
+            begin
+                raise "Cannot move there" if @towers[start_tower-1].last > @towers[end_tower-1].last
+            rescue
+
+            ensure
+                return false
+            end
+        end
+        @towers[end_tower-1] << @towers[start_tower-1].pop
+        @towers
+    end
+
+end

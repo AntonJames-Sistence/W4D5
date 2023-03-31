@@ -77,3 +77,36 @@ describe '#stock_picker' do
     end
 
 end
+
+describe TowerHanoi do
+    subject(:game) { TowerHanoi.new }
+
+    describe '#initialize' do
+        it 'should create 3 towers' do
+            expect(game.towers).to eq([[4,3,2,1],[],[]])
+        end
+    end
+
+    describe '#move' do
+        it 'should move pieces correctly' do
+            game.towers = [[4,3,2],[1],[]]
+            expect(game.move(1, 3)).to eq([[4,3],[1],[2]])
+        end
+
+        context 'should not move bigger elements on top of smaller elements' do
+            it 'returns false' do
+                game.towers = [[4,3,2],[1],[]]
+                expect(game.move(1, 2)).to be false
+            end
+
+            it 'should raise error' do
+                game.towers = [[4,3,2],[1],[]]
+                expect{ game.move(1, 2) }.to raise_error("Cannot move there")
+            end
+        end
+    end
+
+    # describe '#won?' do
+
+    # end
+end
